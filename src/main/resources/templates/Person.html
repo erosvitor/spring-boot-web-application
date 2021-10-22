@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width" />
+  <title>Persons</title>
+  <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+</head>
+<body>
+  <div class="panel panel-default" style="margin: 10px">
+    <div class="panel-heading">
+      <h1 class="panel-title">Persons</h1>
+    </div>
+    <div class="panel-body">
+      <form class="form-inline" method="POST" style="margin: 20px 0" th:object="${person}" th:action="@{/persons}">
+        <input type="text" class="form-control" placeholder="Nome" th:field="*{name}"/>
+        <input type="text" class="form-control" placeholder="Email" th:field="*{email}"/>
+        <input type="text" class="form-control" placeholder="Aniversário" th:field="*{birthday}"/>
+        <input type="text" class="form-control" placeholder="Ativo" th:field="*{active}"/>
+        <input type="submit" class="form-control btn-primary" value="Salvar"/>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Aniversário</th>
+            <th>Ativo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="person : ${persons}">
+            <td th:text="${person.name}">AAA</td>
+            <td th:text="${person.email}">aaa@gmail.com</td>
+            <td th:text="${#temporals.format(person.birthday, 'dd-MM-yyyy')}">99/99/9999</td>
+            <td th:switch="${person.active}">
+              <p th:case="true">Sim</p>
+              <p th:case="false">Não</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
