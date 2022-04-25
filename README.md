@@ -1,5 +1,5 @@
 ## About
-The project shows how to build a web application using Spring Boot.
+Project created in the Spring Boot course.
 
 ## Screenshots
 ![](webapplication.png)
